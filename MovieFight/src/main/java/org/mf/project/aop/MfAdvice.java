@@ -6,16 +6,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.servlet.ModelAndView;
 
 @Component
 @Aspect
@@ -23,7 +20,7 @@ public class MfAdvice {
 
 	@Pointcut("execution(* org.mf.project..Admin*Controller.*(..))")
 	public void admin_login() {
-		// admin패키지 안에 있는 모든 메서드test1
+		// admin패키지 안에 있는 모든 메서드
 	}
 
 	@Pointcut("execution(* org.mf.project..*Controller.*_AL(..))")
