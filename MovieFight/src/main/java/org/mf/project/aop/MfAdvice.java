@@ -23,7 +23,7 @@ public class MfAdvice {
 
 	@Pointcut("execution(* org.mf.project..Admin*Controller.*(..))")
 	public void admin_login() {
-		// admin패키지 안에 있는 모든 메서드
+		// admin패키지 안에 있는 모든 메서드test1
 	}
 
 	@Pointcut("execution(* org.mf.project..*Controller.*_AL(..))")
