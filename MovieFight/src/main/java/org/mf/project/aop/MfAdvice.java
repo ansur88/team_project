@@ -39,7 +39,7 @@ public class MfAdvice {
 	}
 
 	@Around("admin_login() || admin_login2()")
-	public String adminCheckSession(ProceedingJoinPoint joinPoint) throws Throwable {
+	public Object adminCheckSession(ProceedingJoinPoint joinPoint) throws Throwable {
 		// 관리자 URL 체크
 
 		ServletRequestAttributes sra = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
@@ -47,7 +47,7 @@ public class MfAdvice {
 		HttpServletResponse response = sra.getResponse();
 		HttpSession session = request.getSession();
 
-		String url = "redirect:/";
+		Object url = "redirect:/";
 
 		try {
 			Object memLevel = session.getAttribute("memLevel");
@@ -60,8 +60,7 @@ public class MfAdvice {
 					// 로그인은 했지만 관리자가 아닌경우
 					view_alert(response, "잘못된 요청 경로입니다.", "/");
 				} else {
-					String str =(String) joinPoint.proceed(); 
-					url = str;
+					url = joinPoint.proceed();
 				}
 			}
 		} catch (Exception e) {
@@ -73,14 +72,14 @@ public class MfAdvice {
 	}
 
 	@Around("member_login()")
-	public String memberCheckSession(ProceedingJoinPoint joinPoint) throws Throwable {
+	public Object memberCheckSession(ProceedingJoinPoint joinPoint) throws Throwable {
 		// 로그인 체크
 		ServletRequestAttributes sra = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 		HttpServletRequest request = sra.getRequest();
 		HttpServletResponse response = sra.getResponse();
 		HttpSession session = request.getSession();
 
-		String url = "redirect:/";
+		Object url = "redirect:/";
 
 		try {
 			Object memLevel = session.getAttribute("memLevel");
@@ -89,7 +88,7 @@ public class MfAdvice {
 				// memLevel 이 없거나 비어있는 경우 -> 비 로그인
 				view_alert(response, "로그인 후 이용해주세요.", "/member/login1");
 			} else {
-				url = (String) joinPoint.proceed();
+				url = joinPoint.proceed();
 			}
 		} catch (Exception e) {
 			throw new RuntimeException("잘못된 접근입니다.");
@@ -98,13 +97,13 @@ public class MfAdvice {
 	}
 
 	@Around("non_login()")
-	public String nonLoginCheckSession(ProceedingJoinPoint joinPoint) throws Throwable {
+	public Object nonLoginCheckSession(ProceedingJoinPoint joinPoint) throws Throwable {
 
 		ServletRequestAttributes sra = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 		HttpServletRequest request = sra.getRequest();
 		HttpServletResponse response = sra.getResponse();
 		HttpSession session = request.getSession();
-		String url = "redirect:/";
+		Object url = "redirect:/";
 		try {
 			Object memLevel = session.getAttribute("memLevel");
 
@@ -112,10 +111,11 @@ public class MfAdvice {
 				// memLevel이 비어있지 않고 공백이 아닌경우 ->로그인상태
 				view_alert(response, "잘못된 경로입니다.", "/");
 			} else {
-				url = (String) joinPoint.proceed();
+				url = joinPoint.proceed();
 			}
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new RuntimeException("잘못된 접근입니다.");
 		}
 		return url;

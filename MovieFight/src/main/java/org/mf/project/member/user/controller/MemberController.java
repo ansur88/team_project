@@ -68,7 +68,7 @@ public class MemberController {
 	// 아이디 중복체크 
 	@RequestMapping(value = "/member/checkidDup", method = RequestMethod.POST)
 	@ResponseBody
-	public  int checkidDup_NL(@RequestParam Map map) {
+	public int checkidDup_NL(@RequestParam Map map) {
 
 		int i = memberService.checkidDup(map);
 
