@@ -167,7 +167,7 @@ div.footer_middle div.footer_foot div.mf_reList div.re_area {
 
 div.footer_middle div.footer_foot div.mf_reList div.re_area div.re_line {
     width: 90%;
-    height: 60px;
+    min-height: 60px;
     margin: 0 auto;
     padding: 10px 0;
     border-bottom: 1px solid rgb(109, 121, 137);
