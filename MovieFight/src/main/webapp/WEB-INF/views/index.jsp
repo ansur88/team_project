@@ -49,7 +49,7 @@
 
                             <ul class="movie_table elem">
                                 <li class="movie_list elem">
-
+                                    <div class="movie_rank">${runningMovieList.rank}</div>
                                     <a href="/movie?mKey=${runningMovieList.movieCd}">
                                         <span class="movie_img elem">
 											<img class="running_poster" src="/resources/upload/poster/poster_${runningMovieList.movieCd}"

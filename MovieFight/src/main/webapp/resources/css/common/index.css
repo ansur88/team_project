@@ -78,6 +78,18 @@ dd {
     border-bottom-style: dotted;
     border-bottom-width: 0.5px;
     border-bottom-color: silver;
+    position: relative;
+}
+
+.movie_list div.movie_rank{
+    width: 20px;
+    background: white;
+    border-bottom-right-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    top: 5px;
+    left: 5px;
 }
 
 .movie_line .movie_table .movie_list .movie_img {
