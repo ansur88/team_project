@@ -159,11 +159,11 @@ function rep_refresh() {
         var bestRep_right = repRightObject.bestRep_right;
 
         //function으로 댓글 append하는 메서드 생성. 파라미터:mKey,댓글리스트,댓글 타입
-        append_rep(mKey1, repList_left, 'normal');
         append_rep(mKey1, bestRep_left, 'best');
+        append_rep(mKey1, repList_left, 'normal');
 
-        append_rep(mKey2, repList_right, 'normal');
         append_rep(mKey2, bestRep_right, 'best');
+        append_rep(mKey2, repList_right, 'normal');
 
         $('div.mf_reList div.re_top_right').click(function () {
         //리플 좋아요 기능
