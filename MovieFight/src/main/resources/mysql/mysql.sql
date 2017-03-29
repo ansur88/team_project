@@ -182,7 +182,7 @@ ALTER TABLE `mf_Reply`
 	MODIFY COLUMN `repKey` INTEGER NOT NULL AUTO_INCREMENT COMMENT 'PK';
 
 -- 영화-댓글
-CREATE TABLE `m_Reply` (
+CREATE TABLE `m_reply` (
 	`reKey`     INTEGER       NOT NULL COMMENT 'PK', -- PK
 	`memKey`    INTEGER       NOT NULL COMMENT '회원PK', -- 회원PK
 	`mKey`      INTEGER       NOT NULL COMMENT '영화PK', -- 영화PK
@@ -194,13 +194,13 @@ CREATE TABLE `m_Reply` (
 COMMENT '영화-댓글';
 
 -- 영화-댓글
-ALTER TABLE `m_Reply`
-	ADD CONSTRAINT `PK_m_Reply` -- 영화-댓글 기본키
+ALTER TABLE `m_reply`
+	ADD CONSTRAINT `PK_m_reply` -- 영화-댓글 기본키
 		PRIMARY KEY (
 			`reKey` -- PK
 		);
 
-ALTER TABLE `m_Reply`
+ALTER TABLE `m_reply`
 	MODIFY COLUMN `reKey` INTEGER NOT NULL AUTO_INCREMENT COMMENT 'PK';
 
 -- 매거진-좋아요
@@ -452,8 +452,8 @@ ALTER TABLE `mf_Reply`
 		ON UPDATE CASCADE;
 
 -- 영화-댓글
-ALTER TABLE `m_Reply`
-	ADD CONSTRAINT `FK_movie_TO_m_Reply` -- 영화 -> 영화-댓글
+ALTER TABLE `m_reply`
+	ADD CONSTRAINT `FK_movie_TO_m_reply` -- 영화 -> 영화-댓글
 		FOREIGN KEY (
 			`mKey` -- 영화PK
 		)
@@ -464,8 +464,8 @@ ALTER TABLE `m_Reply`
 		ON UPDATE CASCADE;
 
 -- 영화-댓글
-ALTER TABLE `m_Reply`
-	ADD CONSTRAINT `FK_member_TO_m_Reply` -- 회원 -> 영화-댓글
+ALTER TABLE `m_reply`
+	ADD CONSTRAINT `FK_member_TO_m_reply` -- 회원 -> 영화-댓글
 		FOREIGN KEY (
 			`memKey` -- 회원PK
 		)
@@ -547,11 +547,11 @@ ALTER TABLE `uploadImage`
 
 -- 영화-댓글-좋아요
 ALTER TABLE `m_Good`
-	ADD CONSTRAINT `FK_m_Reply_TO_m_Good` -- 영화-댓글 -> 영화-댓글-좋아요
+	ADD CONSTRAINT `FK_m_reply_TO_m_Good` -- 영화-댓글 -> 영화-댓글-좋아요
 		FOREIGN KEY (
 			`reKey` -- 영화-댓글PK
 		)
-		REFERENCES `m_Reply` ( -- 영화-댓글
+		REFERENCES `m_reply` ( -- 영화-댓글
 			`reKey` -- PK
 		)
 		ON DELETE CASCADE

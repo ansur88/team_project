@@ -21,7 +21,7 @@
 	<!--해당 영화키에 대한 포스터의 주소 출력 -->
 	<select id="seletStillShot" parameterType="java.util.HashMap"
 		resultType="java.util.HashMap">
-		select * from stillshot
+		select * from stillShot
 		where mKey = #{mKey}
 	</select>
 	<!--해당 영화키에 대한 스틸컷 출력 -->
